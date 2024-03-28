@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Reviewer.Models.Data.Admin>
+@{
+    Random rd = new Random();
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@await Html.PartialAsync("~/Views/Shared/Partials/ThemAd.cshtml")
+<table id="myTable" class="display">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.UsernameAd)</th>
+            <th>@Html.DisplayNameFor(model => model.PasswordAd)</th>
+            <th>@Html.DisplayNameFor(model => model.FullnameAd)</th>
+            <th>@Html.DisplayNameFor(model => model.EmailAd)</th>
+            <th>@Html.DisplayNameFor(model => model.AvatarAd)</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.UsernameAd)</td>
+                <td>@Html.DisplayFor(modelItem => item.PasswordAd)</td>
+                <td>@Html.DisplayFor(modelItem => item.FullnameAd)</td>
+                <td>@Html.DisplayFor(modelItem => item.EmailAd)</td>
+                <td><img src="~/Img/Admin/@item.AvatarAd" width="50px" height="50px" /></td>
+                <td>
+                    <div>
+                        <div>
+                            <a class="btn btn-primary" style="float:left; margin-right:10px" href="@Url.Action("SuaAd","Admin", new { id = item.MaAdmin})">Sửa</a>
+                        </div>
+                        <div>
+                            <a class="btn btn-primary" style=" float:left" href="@Url.Action("XoaAd","Admin", new { id = item.MaAdmin}) ">Xóa</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            "language": {
+                "sProcessing": "Đang xử lý...",
+                "sLengthMenu": "Xem _MENU_ User",
+                "sZeroRecords": "Không tìm thấy User nào phù hợp",
+                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ ",
+                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 User",
+                "sInfoFiltered": "(được lọc từ _MAX_ User)",
+                "sInfoPostFix": "",
+                "sSearch": "Tìm User:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "Đầu",
+                    "sPrevious": "Trước",
+                    "sNext": "Tiếp",
+                    "sLast": "Cuối"
+                }
+
+            }
+        });
+    });
+</script>
+
+
+

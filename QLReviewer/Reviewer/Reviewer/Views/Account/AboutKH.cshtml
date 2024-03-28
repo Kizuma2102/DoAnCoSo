@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Reviewer.Models.Data
+@{
+    ViewData["Title"] = "Thông Tin Cá Nhân";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<style>
+    label.error {
+        color: red;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-heading" style="margin-top:30px;text-align:center">THÔNG TIN REVIEWER</div>
+    <div class="panel-body">
+        @{
+            Author au = Context.Session.Get<Author>("AU");
+        }
+        <form id="form1" class="form-horizontal" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="username">Tên đăng nhập:</label>
+                <div class="col-sm-9">
+                    <input type="text" disabled class="form-control" id="user" name="TenDN" value="@au.UsernameRe">
+                    <p id="messageUser"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="pass">Mật khẩu:</label>
+                <div class="col-sm-9">
+                    <input type="password" disabled class="form-control" id="pass" name="Matkhau" value="@au.PasswordRe">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="hoten">Họ tên:</label>
+                <div class="col-sm-9">
+                    <input type="text" disabled class="form-control" id="hoten" name="hotenkh" value="@au.FullnameRe">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="diachi">Địa chỉ:</label>
+                <div class="col-sm-9">
+                    <input type="text" disabled class="form-control" id="diachi" name="Diachi" value="@au.DiaChiRe">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="email">Email:</label>
+                <div class="col-sm-9">
+                    <input type="email" disabled class="form-control" id="email" name="email" value="@au.EmailRe">
+                    <p id="messageEmail"></p>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Reviewer.Models.Data.ChuyenMuc>
+@{
+    ViewData["Title"] = "QLChuyenMuc";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center;color:black;">Quản Lý Chuyên Mục</h2>
+@await Html.PartialAsync("~/Views/Shared/Partials/ThemMuc.cshtml")
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Mã Mục</th>
+            <th>Tên Mục</th>
+            <th>CSS Chuyên Mục</th>
+            <th>Chức Năng</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.MaMuc)</td>
+                <td>@Html.DisplayFor(modelItem => item.TenMuc)</td>
+                <td>@Html.DisplayFor(modelItem => item.HinhChuyenMuc)</td>
+
+                <td>
+                    <div>
+                        <div>
+                            <a class="btn btn-primary" style="float:left; margin-right:10px" href="@Url.Action("SuaMuc", "Admin", new { id = item.MaMuc })">Sửa</a>
+                        </div>
+                        <div>
+                            <a class="btn btn-primary btn-thu2" style=" float:left" href="@Url.Action("XoaMuc", "Admin", new { id = item.MaMuc }) ">Xóa</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    }
+
+
+</table>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>
+
+

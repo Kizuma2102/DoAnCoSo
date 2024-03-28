@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{ int i = 0;
+}
+
+@foreach (var item in Model)
+{
+    if (i <= Model.Count / 2)
+    {
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="fs_news_left fs_gadgets_news_left">
+                <div class="all_news_right">
+                    <div class="fs_news_right">
+                        <div class="single_fs_news_img"> <img src="~/Img/SmartPhone/@item.HinhAnh" style="width:93px;height:95px" alt="Single News"> </div>
+                        <div class="single_fs_news_right_text">
+                            <h4 style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><a href="/Home/@item.TenBvFriendly">@item.TenBai</a></h4>
+                            <p><i class="fa fa-clock-o"></i> @item.NgayViet </p>
+                            <div class="userContainer">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    if (i > Model.Count / 2)
+    {
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="fs_news_left fs_gadgets_news_left">
+                <div class="all_news_right">
+                    <div class="fs_news_right">
+                        <div class="single_fs_news_img"> <img src="~/Img/SmartPhone/@item.HinhAnh" style="width:93px;height:95px" alt="Single News"> </div>
+                        <div class="single_fs_news_right_text">
+                            <h4 style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><a href="/Home/@item.TenBvFriendly">@item.TenBai</a></h4>
+                            <p> <i class="fa fa-clock-o"></i> @item.NgayViet </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    i++;
+}
+
+

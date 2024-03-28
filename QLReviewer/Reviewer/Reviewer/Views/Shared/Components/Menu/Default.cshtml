@@ -1,0 +1,48 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="container">
+    <div class="mainnav">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <nav class="main_nav_box">
+                    <ul id="nav">
+                        <li class="nav_lifeguide">
+                            <a href="@Url.Action("Index","Home")">Trang chủ </a>
+                        </li>
+                        @foreach (var item in Model)
+                        {
+                            <li class="@item.HinhChuyenMuc">
+                                <a href="">@item.TenMuc </a>
+                                <div class="sub_menu sub_menu_p single_mega">
+                                    <ul>
+                                        @await Component.InvokeAsync("SubMenu", item.MaMuc)
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+                        <li class="nav_lifestyle">
+                            <a href="@Url.Action("Contact","Home")">Liên hệ </a>
+                        </li>
+                        <li class="nav_video">
+                            <a href="@Url.Action("About","Home")">Giới thiệu </a>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- ~~~=| Mobile Navigation END |=~~~ -->
+                <div class="only-for-mobile">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <ul class="ofm">
+                            <li class="m_nav"><i class="fa fa-bars"></i>LBT TEK</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

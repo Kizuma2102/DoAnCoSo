@@ -1,0 +1,32 @@
+﻿@model Reviewer.Models.Data.Tag
+@{
+    ViewData["Title"] = "Xoá Tag";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xoá Tag</h2>
+<div>
+    <h3>Bạn có chắc chắn muốn xoá???</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaTag)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaTag)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TenTag)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenTag)
+        </dd>
+    </dl>
+
+    <form asp-action="XoaTag">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="QLTag">Back to List</a>
+    </form>
+</div>
+
+

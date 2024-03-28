@@ -1,0 +1,68 @@
+﻿@model Reviewer.Models.Data.Author
+
+@{
+    ViewData["Title"] = "Sua1";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Sửa Tác Giả</h2>
+<hr />
+@using (Html.BeginForm("Sua1", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Sua1">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div hidden="hidden" class="form-group">
+                    <label asp-for="MaReviewer" class="control-label"></label>
+                    <input asp-for="MaReviewer" class="form-control" />
+                    <span asp-validation-for="MaReviewer" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UsernameRe" class="control-label"></label>
+                    <input asp-for="UsernameRe" class="form-control" />
+                    <span asp-validation-for="UsernameRe" class="text-danger"></span>
+                </div>
+                <div hidden="hidden" class="form-group">
+                    <label asp-for="PasswordRe" class="control-label"></label>
+                    <input asp-for="PasswordRe" class="form-control" />
+                    <span asp-validation-for="PasswordRe" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="FullnameRe" class="control-label"></label>
+                    <input asp-for="FullnameRe" class="form-control" />
+                    <span asp-validation-for="FullnameRe" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmailRe" class="control-label"></label>
+                    <input asp-for="EmailRe" class="form-control" />
+                    <span asp-validation-for="EmailRe" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="AvatarRe" class="control-label"></label>
+                    <input asp-for="AvatarRe" class="hidden" />
+                    <img src="~/Img/Reviewer/@Model.AvatarRe" class="w-75" />
+                    <input name="fHinh" type="file" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="DiaChiRe" class="control-label"></label>
+                    <input asp-for="DiaChiRe" class="form-control" />
+                    <span asp-validation-for="DiaChiRe" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="SoTien" class="control-label"></label>
+                    <input asp-for="SoTien" class="form-control" />
+                    <span asp-validation-for="SoTien" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+    <div>
+        <a asp-action="QLReviewer">Back to List</a>
+    </div>
+

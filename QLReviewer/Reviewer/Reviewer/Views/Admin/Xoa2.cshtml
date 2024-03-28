@@ -1,0 +1,55 @@
+﻿@model Reviewer.Models.Data.KhachHang
+
+@{
+    ViewData["Title"] = "Xoa2";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xoá Khách Hàng</h2>
+<div>
+    <h3>Bạn có chắc chắn muốn xoá???</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaKh)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaKh)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UsernameKh)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UsernameKh)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PassKh)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PassKh)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HoTenKh)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HoTenKh)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailKh)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmailKh)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AvatarKh)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AvatarKh)
+        </dd>
+    </dl>
+    
+    <form asp-action="Xoa2">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="QLKhachHang">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,57 @@
+﻿@model Reviewer.Models.Data.PostBv
+@{
+    ViewData["Title"] = "XoaPostBai";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xoá Post Bài</h2>
+<div>
+    <h3>Bạn có chắc chắn muốn xoá???</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaPost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaPost)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TenBai)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenBai)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhAnhBv)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HinhAnhBv)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NoiDung)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoiDung)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TinhTrang)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TinhTrang)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayViet)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NgayViet)
+        </dd>
+    </dl>
+
+    <form asp-action="XoaPostBai">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="QLPostBai">Back to List</a>
+    </form>
+</div>
+
+
+

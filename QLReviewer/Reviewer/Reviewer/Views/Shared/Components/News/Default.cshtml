@@ -1,0 +1,18 @@
+﻿@using Reviewer.Models.Data;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="hp_banner_left">
+    @foreach (var item in Model)
+    {
+        <div class="bl_single_news">
+            <img src="~/Img/SmartPhone/@item.HinhAnhBv" style="width:500px;height:443px" />
+            <div class="bl_single_text">
+                <a href="/Home/@item.TenBvFriendly">
+                    <h4>@item.TenBai</h4>
+                </a> <span><i class="fa fa-clock-o"></i>@item.NgayViet</span>
+            </div>
+        </div>
+    }
+</div>
+@await Component.InvokeAsync("TinHeader")

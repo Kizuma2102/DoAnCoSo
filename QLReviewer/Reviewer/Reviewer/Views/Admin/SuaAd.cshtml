@@ -1,0 +1,72 @@
+﻿@model Reviewer.Models.Data.Admin
+@{
+    ViewData["Title"] = "SuaAd";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("SuaAd", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>ADMIN</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MaAdmin)
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Tên đăng nhập</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UsernameAd, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UsernameAd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Mật khẩu</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PasswordAd, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.PasswordAd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Họ tên đầy đủ</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FullnameAd, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FullnameAd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Email</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EmailAd, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EmailAd, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div>
+            <div class="form-group">
+                <div class="group">
+                    <label for="recipient-name" class="control-label col-md-2">Avatar</label>
+                    <input type="file" name="AvatarAd" id="fileToUpload">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+
+

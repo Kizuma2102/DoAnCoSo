@@ -1,0 +1,165 @@
+﻿@model IEnumerable<Reviewer.Models.Data.BaiViet>
+@{
+    ViewData["Title"] = "QLBaiViet";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center;color:black">Quản Lý Bài Viết</h2>
+<div>
+    @await Html.PartialAsync("~/Views/Shared/Partials/Them.cshtml")
+</div>
+@* <table id="myTable" class="table align-middle mb-0 bg-white">
+    <thead class="bg-light">
+        <tr class="header-row">
+            <th>Tên Bài</th>
+            <th>Tag</th>
+            <th>Hình Ảnh Bài Viết</th>
+            <th>Reviewer</th>
+            <th>Lượt Xem</th>
+            <th>Ngày Viết</th>
+            <th>Tình Trạng</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.TenBai)</td>
+                <td>@Html.DisplayFor(modelItem => item.MaTag)</td>
+                <td>
+                    <img src="~/Img/SmartPhone/@item.HinhAnhBv" width="40" height="40" />
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.MaReviewer)</td>
+                <td>@Html.DisplayFor(modelItem => item.LuotXem)</td>
+                <td>@Html.DisplayFor(modelItem => item.NgayViet)</td>
+                <td>
+                    @if (item.TinhTrang == false)
+                    {
+                        <p class="badge badge-success rounded-pill d-inline">Hủy Kích Hoạt</p>
+                    }
+                    else
+                    {
+                        <p class="badge badge-success rounded-pill d-inline">Kích Hoạt</p>
+                    }
+                </td>
+                <td>
+                    <div>
+                        <div>
+                            <a class="btn btn-primary" style="float:left; margin-right:10px"
+                                href="@Url.Action("Sua","Admin", new { id = item.MaBai})">Sửa</a>
+                        </div>
+                        <div>
+                            <a class="btn btn-primary" style="float:left; margin-right:10px"
+                                onclick="return confirm('Bạn có muốn hủy kích hoạt ?');"
+                                href="@Url.Action("HuyKichHoatBV", "Admin", new { id = item.MaBai })">Xóa</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    }
+
+
+</table> *@
+
+
+
+<table id="myTable" class="table align-middle mb-0 bg-white tb1">
+    <thead class="bg-light">
+        <tr class="header-row">
+            <th>Tên Bài</th>
+            <th>Tag</th>
+            <th>Hình Ảnh Bài Viết</th>
+            <th>Reviewer</th>
+            <th>Lượt Xem</th>
+            <th>Ngày Viết</th>
+            <th>Tình Trạng</th>
+            <th>Chức năng</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+
+        <tbody class="tb2">
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.TenBai)</td>
+                <td>@Html.DisplayFor(modelItem => item.MaTag)</td>
+                <td>
+                    <img src="~/Img/SmartPhone/@item.HinhAnhBv" />
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.MaReviewer)</td>
+                <td>@Html.DisplayFor(modelItem => item.LuotXem)</td>
+
+                <td>@Html.DisplayFor(modelItem => item.NgayViet)</td>
+
+                <td>
+                    @if (item.TinhTrang == false)
+                    {
+                        <p class="badge badge-success rounded-pill d-inline notAtv" style="background-color: #FF6969;">Hủy Kích Hoạt</p>
+                    }
+                    else
+                    {
+                        <p class="badge badge-success rounded-pill d-inline Atv" style="background-color: #16FF00;">Kích Hoạt</p>
+                    }
+                </td>
+                <td class="tb3">
+                    <div>
+                        <div>
+                            <a class="btn btn-primary" style="float:left; margin-right:10px"
+                                href="@Url.Action("Sua","Admin", new { id = item.MaBai})">Sửa</a>
+                        </div>
+                        <div>
+                            <a class="btn btn-primary btn-thu2" style="float:left; margin-right:10px"
+                                onclick="return confirm('Bạn có muốn hủy kích hoạt ?');"
+                                href="@Url.Action("HuyKichHoatBV", "Admin", new { id = item.MaBai })">Xóa</a>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        </tbody>
+    }
+</table>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable({
+            "language": {
+                "sProcessing": "Đang xử lý...",
+                "sLengthMenu": "Xem _MENU_ Bài Viết",
+                "sZeroRecords": "Không tìm thấy Bài Viết nào phù hợp",
+                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ ",
+                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 Bài Viết",
+                "sInfoFiltered": "(được lọc từ _MAX_ Bài Viết)",
+                "sInfoPostFix": "",
+                "sSearch": "Tìm Bài Viết:",
+                "sUrl": "",
+                "oPaginate": {
+                    "sFirst": "Đầu",
+                    "sPrevious": "Trước",
+                    "sNext": "Tiếp",
+                    "sLast": "Cuối"
+                }
+
+            }
+        });
+    });
+</script>

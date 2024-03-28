@@ -1,0 +1,196 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Reviewer.Models.Data
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+  
+
+    <!-- ~~~=| Font awesome |==-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- ~~~=| Bootstrap css |==-->
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+    <!-- ~~~=| Theme files |==-->
+
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/responsive.css">
+    <link rel="stylesheet" href="~/css/register.css">
+
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" href="~/images/apple-touch-icon-precomposed.png">
+     <link rel="shortcut icon" type="images/ico" href="~/images/favicon1.ico" />
+    <!-- Start of reviewer Zendesk Widget script -->
+    <script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=abb952d2-067b-4854-b231-38d21ec16a27"></script>
+    <!-- End of reviewer Zendesk Widget script -->
+</head>
+<body>
+    <header class="header_area">
+        <div class="header_top">
+            <div class="container">
+                <div class="row">
+                    @await Component.InvokeAsync("Breaking")
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="header_top_right">
+                            <div class="social_header">
+                                <ul>
+                                    @{
+                                        KhachHang kh = Context.Session.Get<KhachHang>("KH");
+                                        Author au = Context.Session.Get<Author>("AU");
+                                    }
+
+                                    @if (kh == null && au == null)
+                                    {
+                                        <li><a href="@Url.Action("DangNhap", "Account")">Đăng nhập</a></li>
+                                        <li><a href="@Url.Action("DangKy", "Account")">Đăng ký</a></li>
+                                    }
+                                    else if (kh != null)
+                                    {
+                                        <li><a href="#">Xin chào Khách hàng: @kh.HoTenKh!</a></li>
+                                        <li><a href="@Url.Action("Logout", "Account")">Đăng xuất</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Xin trân trọng kính chào: @au.FullnameRe</a>
+                                            <div class="dropdown-menu nav--drop">
+                                                <a class="dropdown-item" href="@Url.Action("AboutKH", "Account")">Thông tin tài khoản</a>
+                                                <a class="dropdown-item" asp-action="PostBai" asp-controller="Account" asp-route-id="@au.MaReviewer">Đăng bài viết</a>
+                                                <a class="dropdown-item" asp-action="LichSuPostBai" asp-controller="Account" asp-route-id="@au.MaReviewer">Lịch sử đăng bài</a>
+                                                <a class="dropdown-item" asp-action="SuaMK" asp-controller="Account" asp-route-id="@au.MaReviewer">Đổi mật khẩu</a>
+                                                <a class="dropdown-item" href="@Url.Action("RutTien", "Account",new { id=au.MaReviewer})">Rút tiền</a>
+                                                <a class="dropdown-item" href="@Url.Action("LichSuRutTien", "Account",new { id=au.MaReviewer})">Lịch Sử Rút Tiền</a>
+                                            </div>
+                                        </li>
+                                        <li><a href="@Url.Action("Logout", "Account")">Đăng xuất</a></li>
+                                    }
+                                </ul>
+
+                            </div>
+                            <div class="header_search_box">
+                                <form class="header_search hidden-xs" action="/Home/TimKiem" method="post">
+                                    <input type="text" id="txtKeyword" name="keyword" placeholder="Search">
+                                    <input type="submit" value="">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ~~~=| Logo Area START |=~~~ -->
+        <div class="header_logo_area">
+            <div class="container">
+                <div class="row">
+                    <div class="text-center">
+                        <div class="logo"> <a href="@Url.Action("Index","Home")"><img src="~/images/logo.png" alt="Site Logo" /></a> </div>
+                    </div>
+                    @* <div class="col-md-8 col-sm-8 col-xs-12">
+                        <div class="header_add"> <a href="#"><img src="~/images/test2.jpg" alt="Site add" /></a> </div>
+                    </div> *@
+                </div>
+            </div>
+        </div>
+        <!-- ~~~=| Logo Area END |=~~~ -->
+        <!-- ~~~=| Main Navigation START |=~~~ -->
+        @await Component.InvokeAsync("Menu").
+        <!-- ~~~=| Main Navigation END |=~~~ -->
+
+    </header>
+    <div>
+        @RenderBody()
+    </div>
+    <footer class="footer_area">
+        <div class="footer_top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="footer_top_box">
+                            <div class="row">
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="footer_top_left">
+                                        <img src="~/images/footer_logo.png" alt="Footer Logo" />
+                                        <p>Chúng tôi là các chuyên viên Review các sản phẩm công nghệ một cách chuyên nghiệp, chính xác nhất, uy tín luôn đặt lên hàng đầu</p>
+                                        <div class="ft_contact">
+                                            <h4>Liên hệ</h4>
+                                            <address>
+                                                <p> <i class="fa fa-map-marker"></i>VQ4P+249, Phường Tân Phú, Quận 9, Thành phố Hồ Chí Minh</p>
+                                                <a href="tel:+10001235456789"><i class="fa fa-phone"></i>Telephone: +89123456789</a><br>
+                                                <a href="mail-to:lbttek@News.com"><i class="fa fa-envelope"></i>E-mail: lbttek@News.com</a>
+                                            </address>
+                                        </div>
+                                        <div class="ft_connected">
+                                            <h4>Theo dõi chúng tôi tại</h4>
+                                            <ul>
+                                                <li><a class="fa fa-facebook" href="https://www.facebook.com/"></a></li>
+                                                <li><a class="fa fa-twitter" href="https://twitter.com/"></a></li>
+                                                <li><a class="fa fa-google-plus" href="https://www.google.com/"></a></li>
+                                            </ul>
+                                        </div>
+                                        <p>Hãy theo dõi để cập nhật thông tin nhanh nhất</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="footer_top_middle">
+                                        @await Component.InvokeAsync("BVPhoBien")
+                                        @await Html.PartialAsync("/Views/Account/Subcribe.cshtml")
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-4 col-xs-12">
+                                    <div class="footer_top_right">
+                                        <div class="ftr_video">
+                                            <h4>Kết nối với chúng tôi</h4>
+                                            <div class="results_video embed-responsive embed-responsive-16by9">
+                                                <img src="https://cdn.baoquocte.vn/stores/news_dataimages/minhhoa/012020/03/10/in_article/nhung-cong-nghe-ngu-tri-nam-2020.gif"></img>
+                                            </div>
+                                        </div>
+                                        <div class="ftr_tags">
+                                            <h4>Tags</h4>
+                                            @await Component.InvokeAsync("Tag")
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer_bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="footer_bottom_box">
+                            <p>
+                                Bản quyền &copy;
+                                <script>document.write(new Date().getFullYear());</script> Thiết kế bởi<a href="@Url.Action("Login","Admin")"> Nhóm LBT Tek </a>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+
+    <!-- ~~~=| Bootstrap jQuery |=~~~ -->
+    <script src="~/js/bootstrap.min.js"></script>
+    <!-- ~~~=| Theme jQuery |=~~~ -->
+    <script src="~/js/main.js"></script>
+    <script src="~/js/ie-opacity-polyfill.js"></script>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.13.4/dist/sweetalert2.all.min.js"></script>
+    @section Scripts{
+        @{ await Html.RenderPartialAsync
+                       ("_ValidationScriptsPartial");}
+    }
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewData["Title"] = "Liên Hệ";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="breadcumb_common_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="breadcum_c_left">
+                    <p>Liên Hệ</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <div class="breadcum_c_right">
+                    <ul>
+                        <li><a href="">Home</a> /</li>
+                        <li><a href="">@ViewData["Title"]</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="contact_message_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">        
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1257424099144!2d106.7122433153342!3d10.801680261679465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528a501281b1f%3A0x6f43044e459b3132!2zNDc1YSDEkGnhu4duIEJpw6puIFBo4bunLCBQaMaw4budbmcgMjUsIELDrG5oIFRo4bqhbmgsIEjhu5MgQ2jDrSBNaW5oIDcwMDAwLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1558778550318!5m2!1sen!2s" width="900" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>    
+            </div>
+        </div>
+    </div>
+</div>
+<section class="contact_message_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <!-- ~~~=| form START |=~~~ -->
+                <div class="contact-page-form">
+                    <h2>Gửi thắc mắc cho chúng tôi</h2>
+                    <div class="comments_form">
+                        @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
+                        {
+                            @Html.ValidationSummary(true)
+                            <form method="post">
+
+                                <div class="contact_cc_name">
+                                    <input type="text" name="name" placeholder="Họ và Tên *" required="">
+                                    <input type="text" name="email" placeholder="E-mail của bạn *" required="">
+                                </div>
+                                <textarea name="message" cols="30" rows="10" placeholder="Ý kiến của bạn"></textarea>
+                                <input name="submit" type="submit" value="Gửi đi">
+
+                            </form>
+                        }
+                    </div>
+                </div>
+                <!-- ~~~=| form END |=~~~ -->
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="contact_address">
+                    <h2>GHÉ THĂM CHÚNG TÔI</h2>
+                    <p>
+                       LBT TEK là trang web Review đánh giá về sản phầm đồ Công Nghệ vừa được thành lập năm 2023 tại Trường Đại Học Công Nghệ (Hutech)
+                    </p>
+                    <div class="visit_us_contact">
+                        <ul>
+                            <li>
+                                <a href="">
+                                    <div class="visit_img"><img src="~/images/map_ico.png" alt="map ico"></div><div class="visit_text">
+                                        VQ4P+249, Phường Tân Phú, Quận 9
+                                        <br>Hồ Chí Minh City
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <div class="visit_img"><img src="~/images/ph_ico.png" alt="map ico"></div><div class="visit_text">Telephone : +89123456789</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tell:+1000123456789">
+                                    <div class="visit_img"><img src="~/images/msg_ico.png" alt="map ico"></div><div class="visit_text">E-mail : lbttek@News.com</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- ~~~=| SP area END |=~~~ -->
+        </div>
+    </div>
+</section>
+

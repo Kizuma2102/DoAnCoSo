@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="follow_us_side">
+    <h2>Bài Viết Xem Nhiều</h2>
+    <div class="all_news_right">
+        @foreach (var item in Model)
+        {
+            <div class="fs_news_right">
+                <div class="single_fs_news_img"> <img alt="Single News" src="~/Img/SmartPhone/@item.HinhAnhBv"> </div>
+                <div class="single_fs_news_right_text">
+                    <h4><a href="/Home/@item.TenBvFriendly">@item.TenBai</a></h4>
+                    <p> <i class="fa fa-clock-o"></i> @item.NgayViet </p>
+                </div>
+            </div>
+        }
+    </div>
+</div>

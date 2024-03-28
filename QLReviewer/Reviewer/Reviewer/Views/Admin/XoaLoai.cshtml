@@ -1,0 +1,37 @@
+﻿@model Reviewer.Models.Data.LoaiSp
+
+@{
+    ViewData["Title"] = "Xoá Loại";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xoá Loại Sản Phẩm</h2>
+<div>
+    <h3>Bạn có chắc chắn muốn xoá???</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaLoai)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaLoai)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TenLoai)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenLoai)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaMuc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaMuc)
+        </dd>
+    </dl>
+    
+    <form asp-action="XoaLoai">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="QLLoaiSp">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,62 @@
+﻿@model Reviewer.Models.Data.BaiViet
+
+@{
+    ViewData["Title"] = "Xoa";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xoá Bài Viết</h2>
+<h3>Bạn có chắc chắn muốn xoá???</h3>
+<div>
+    <h3>Bạn có chắc chắn muốn xoá???</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaBai)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaBai)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TenBai)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenBai)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhAnhBv)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HinhAnhBv)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NoiDung)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NoiDung)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LuotXem)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LuotXem)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayViet)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NgayViet)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TinhTrang)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TinhTrang)
+        </dd>
+    </dl>
+    
+    <form asp-action="Xoa">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="QLBaiViet">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,36 @@
+﻿@model Reviewer.Models.Data.ChuyenMuc
+@{
+    ViewData["Title"] = "XoaMuc";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xoá Mục</h2>
+<div>
+    <h3>Bạn có chắc chắn muốn xoá???</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaMuc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaMuc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TenMuc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TenMuc)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhChuyenMuc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HinhChuyenMuc)
+        </dd>
+    </dl>
+
+    <form asp-action="XoaMuc">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="QLChuyenMuc">Back to List</a>
+    </form>
+</div>

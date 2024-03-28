@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Http
+@using X.PagedList;
+@using X.PagedList.Mvc.Common;
+@using X.PagedList.Mvc.Core;
+@model IEnumerable<Reviewer.Models.Data.Pay>
+@{
+    ViewData["Title"] = "Lịch Sử Rút Tiền";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<div class="container">
+    <h2>Lịch Sử Rút Tiền</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Thời gian</th>
+                <th>Số Tiền</th>
+                <th>Email Ngân Lượng</th>
+                <th>Trạng Thái</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@String.Format("{0:d/M/yyyy HH:mm:ss}", item.NgayGio)</td>
+                    <td>@String.Format("{0:0,0}", item.SoTien) đ</td>
+                    <td>@item.EmailNl</td>
+                    <td>
+                        @if (item.TinhTrang == false)
+                        {
+                            <p style="color:red"> Chờ Duyệt</p>
+                        }
+                        else
+                        {
+                            <p style="color:green">Hoàn Thành</p>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+    @Html.PagedListPager((IPagedList)Model,page=>Url.Action("LichSURutTien",new { page = page}))
+</div>
+
+

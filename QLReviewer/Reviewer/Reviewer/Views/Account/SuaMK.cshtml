@@ -1,0 +1,91 @@
+﻿@using Microsoft.AspNetCore.Http
+@model Reviewer.Models.Data.Author
+@{
+    ViewData["Title"] = "Đổi Mật Khẩu";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<style>
+    label.error {
+        color: red;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-heading" style="margin-top:30px;text-align:center">ĐỔI MẬT KHẨU</div>
+    <div class="panel-body">
+        <form id="form1" class="form-horizontal" method="POST" enctype="multipart/form-data">
+            @using (Html.BeginForm("SuaMK", "Account", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.MaReviewer)
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="username">Tên đăng nhập:</label>
+                    <div class="col-sm-9">
+                        @Html.EditorFor(model => model.UsernameRe, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                        <p id="messageUser"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="pass">Mật khẩu cũ:</label>
+                    <div class="col-sm-9">
+                        <input name="Password" class="form-control" placeholder="Mật khẩu cũ" type="password" />@ViewBag.ThongBaoLoi
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="pass">Mật khẩu mới:</label>
+                    <div class="col-sm-9">
+                        <input name="PasswordRe" class="form-control" placeholder="Mật khẩu mới" type="password" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="pass">Nhập lại mật khẩu mới:</label>
+                    <div class="col-sm-9">
+                        <input name="Nhaplai" class="form-control" placeholder="Nhập lại" type="password" />
+                    </div>
+                </div>
+                <div hidden="hidden" class="form-group">
+                    <label class="control-label col-sm-3" for="pass">Họ tên:</label>
+                    <div class="col-sm-9">
+                        @Html.EditorFor(model => model.FullnameRe, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div hidden="hidden" class="form-group">
+                    <label class="control-label col-sm-3" for="pass">Email:</label>
+                    <div class="col-sm-9">
+                        @Html.EditorFor(model => model.EmailRe, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3"></label>
+                    <div class="col-sm-9">
+                        <button type="reset" class="btn btn-default btnDelete">Xóa</button>
+                        <button type="submit" class="btn btn-primary btnRegister">Đổi mật khẩu</button>
+                    </div>
+                </div>
+            }
+        </form>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation/dist/additional-methods.js"></script>
+    <script>
+        $(function () {
+            $("#form1").validate({
+                rules: {
+                    PasswordRe: { required: true },
+                    Nhaplai: { equalTo: "input[name='PasswordRe']" },
+                },
+                messages: {
+                    Nhaplai: { equalTo: "Không khớp" },
+                }
+            });
+        });
+    </script>
+}
+
+
+

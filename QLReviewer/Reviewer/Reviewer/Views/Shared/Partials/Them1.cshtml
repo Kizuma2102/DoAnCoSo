@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Thêm Reviewer</button>
+@using (Html.BeginForm("Them1", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Thêm quản trị </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form enctype="multipart/form-data" asp-action="Them2">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputText">Tài Khoản </label>
+                                <input type="text" name="UsernameRe" class="form-control" id="inputText" placeholder="Nhập Tài Khoản">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputText">Mật Khẩu</label>
+                            <input type="text" name="PasswordRe" class="form-control" id="inputText" placeholder="Nhập Mật Khẩu">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputText">Họ Tên</label>
+                            <input type="text" name="FullnameRe" class="form-control" id="inputText" placeholder=" Nhập Họ và Tên">
+                        </div>
+                        <div class="form-group ">
+                            <label for="inputText">Email</label>
+                            <input type="email" name="EmailRe" class="form-control" id="inputText" placeholder="Nhập Email">
+                        </div>
+
+                        <div class="form-row ">
+
+                            <div class="form-group col-md-6">
+                                <label for="inputText">Avartar </label>
+                                <input type="file" name="imageRe" class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputText">Địa chỉ </label>
+                                <input type="text" name="DiaChiRe" class="form-control">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputText">Số tiền </label>
+                                <input type="number" name="SoTien" class="form-control">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

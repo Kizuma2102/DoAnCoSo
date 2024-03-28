@@ -1,0 +1,14 @@
+﻿<div class="ftm_realted_post">
+    <h4>Phổ Biến</h4>
+    @foreach (var item in Model)
+    {
+        <div class="single_related_post">
+            <div class="srp_img"> <a href="/Home/@item.TenBvFriendly"> <img src="~/Img/SmartPhone/@item.HinhAnhBv" alt="" /> </a> </div>
+            <div class="rel_post_text">
+                <span>@item.NgayViet</span>
+                <p><a href="/Home/@item.TenBvFriendly"> @item.TenBai </a></p>
+            </div>
+        </div>
+    }
+
+</div>

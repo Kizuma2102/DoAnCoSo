@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Reviewer.Models.Data.Tag>
+@{
+    ViewData["Title"] = "QLTag";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center;color:black;">Quản Lý Tag</h2>
+@await Html.PartialAsync("~/Views/Shared/Partials/ThemTag.cshtml")
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Mã Tag</th>
+            <th>Tên Tag</th>
+            <th>Chức Năng</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.MaTag)</td>
+                <td>@Html.DisplayFor(modelItem => item.TenTag)</td>
+
+                <td>
+                    <div>
+                        <div>
+                            <a class="btn btn-primary" style="float:left; margin-right:10px" href="@Url.Action("SuaTag", "Admin", new { id = item.MaTag })">Sửa</a>
+                        </div>
+                        <div>
+                            <a class="btn btn-primary" style=" float:left" href="@Url.Action("XoaTag", "Admin", new { id = item.MaTag }) ">Xóa</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    }
+
+
+</table>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>
+

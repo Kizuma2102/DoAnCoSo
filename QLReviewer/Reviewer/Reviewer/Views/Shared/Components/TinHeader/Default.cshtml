@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{ int i= 0;}
+
+<div class="hp_banner_right">
+    @foreach (var item in Model)
+    {
+        if (i <= Model.Count / 1)
+        {
+    <div class="br_single_news">
+        <img src="~/Img/SmartPhone/@item.HinhAnhBv" alt="" style="width:280px;height:200px" />
+        <div class="br_single_text">
+            <a href="/Home/@item.TenBvFriendly">
+                <h4>@item.TenBai</h4>
+            </a>
+        </div>
+        <div class="br_cam"> <a href="" class="fa fa-camera"></a> </div>
+    </div>
+        }
+        if (i > Model.Count / 1)
+        {
+    <div class="br_single_news">
+                <img src="~/Img/SmartPhone/@item.HinhAnhBv" alt="" style="width:500px;height:250px" />
+        <div class="br_single_text">
+            <a href="/Home/@item.TenBvFriendly">
+                <h4>@item.TenBai</h4>
+            </a>
+        </div>
+        <div class="br_cam"> <a href="" class="fa fa-camera"></a> </div>
+    </div>
+        }
+        i++;
+    }
+</div>

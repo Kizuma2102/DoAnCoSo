@@ -1,0 +1,89 @@
+﻿@model IEnumerable<Reviewer.ViewModel.BaiVietTheoLoai>
+@using X.PagedList;
+@using X.PagedList.Mvc.Common;
+@using X.PagedList.Mvc.Core;
+@{
+    ViewData["Title"] = "BaiVietTheoTag";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@ViewBag.a
+<table id="table_id" class="display custom-table">
+    <thead>
+        <tr>
+            <th>Mã Bài</th>
+            <th>Tên Bài</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.MaBai)</td>
+                <td><a href="@Url.Action("Details", "Home", new { id = item.MaBai })">@Html.DisplayFor(modelItem => item.TenBai)</a></td>
+            </tr>
+        </tbody>
+    }
+</table>
+<div class="pagination">
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("BaiVietTheoTag", new { page = page }))
+    <a asp-action="Index">Back to Home</a>
+</div>
+
+<style>
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .custom-table th,
+        .custom-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .custom-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .custom-table tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+    .pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 20px 0;
+    }
+
+        .pagination a {
+            color: #333;
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border: 1px solid #4CAF50;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+            }
+</style>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>
+
+

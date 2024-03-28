@@ -1,0 +1,76 @@
+﻿<link href="~/dist/summernote.css" type="text/css" rel="stylesheet" />
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Thêm Bài Viết</button>
+@using (Html.BeginForm("Them", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Thêm quản trị </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form enctype="multipart/form-data">
+
+                        <div class="form-group ">
+                            <label for="inputText">Tên Bài</label>
+                            <input type="text" class="form-control" id="inputText" name="TenBai" placeholder="Tên bài viết">
+                        </div>
+                        <div class="group">
+                            <label for="recipient-name" class="col-form-label">Hình Ảnh</label>
+                            <input type="file" name="HinhAnhBv" id="fileToUpload" required>
+                            <img src="#" alt="" id="#HinhAnhSP">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputText">Nội dung</label>
+                                <textarea type="text" name="NoiDung" class="form-control" id="NoiDung"></textarea>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputText">Loại</label>
+                                <select name="MaLoai" class="form-control" asp-items="ViewBag.MaLoai"></select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputText">Reviewer</label>
+                                <select name="MaReviewer" class="form-control" asp-items="ViewBag.MaReviewer"></select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputText">Tag</label>
+                                <select name="Tag" class="form-control" asp-items="ViewBag.MaTag"></select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#HinhAnhSP")
+                    .attr('src', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+<script src="~/dist/summernote.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#NoiDung').summernote({
+            placeholder: 'Description for product',
+            tabsize: 2,
+            height: 200
+        });
+    });
+</script>

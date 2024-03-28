@@ -1,0 +1,81 @@
+:root {
+    --cp: #e8cb2e;
+}
+
+.panel-body input {
+    border-radius: 100rem;
+    border: 1px solid #e8cb2e;
+    width: 550px;
+}
+
+.btnDelete {
+    background-color: #d13131 !important;
+    color: #fff;
+    border-radius: 100rem;
+    border: none;
+    margin-right: 20px;
+}
+
+.btnRegister {
+    background-color: var(--cp);
+    border: none;
+    border-radius: 100rem;
+}
+
+
+.btn--back {
+    padding: 15px;
+    margin-left: 20px;
+    border-radius: 100rem;
+    background-color: #e8cb2e;
+    /* display: block; */
+    width: fit-content;
+    transition: background-color 0.5s ease;
+}
+
+.btn--back:hover {
+    background-color: #555555 !important;
+
+}
+
+.btn--back>a {
+    color: #fff;
+    font-weight: bold;
+}
+
+.pagination .pagination-container {
+    margin: auto;
+}
+
+.pagination>a {
+    color: #fff !important;
+    font-weight: bold;
+    background-color: #e8cb2e;
+    border-radius: 100rem;
+    border: none !important;
+    margin-left: 20px;
+
+}
+
+
+
+.pagination>.active>a,
+.pagination>.active>span,
+.pagination>.active>a:hover,
+.pagination>.active>span:hover,
+.pagination>.active>a:focus,
+.pagination>.active>span:focus {
+    background-color: #e8cb2e;
+    border-color: #e8cb2e;
+}
+
+
+.pagination > li > a, .pagination > li > span {
+    color: #555;
+}
+
+
+
+div.home_sidebar .single_fs_news_right_text h4 a:hover {
+    color: #b39d22;
+}

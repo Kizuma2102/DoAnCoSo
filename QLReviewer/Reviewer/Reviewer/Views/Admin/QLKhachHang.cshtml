@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Reviewer.Models.Data.KhachHang>
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "QLKhachHang";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center;color:black;">Quản Lý Độc Giả</h2>
+@if (Context.Session.Get("Admin") != null)
+{
+    @await Html.PartialAsync("~/Views/Shared/Partials/Them2.cshtml")
+}
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Họ Tên</th>
+            <th>Tài Khoản</th>
+            <th>Mật Khẩu</th>
+            <th>Email</th>
+            <th>Avartar</th>
+            <th>Chức Năng</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.HoTenKh)</td>
+                <td>@Html.DisplayFor(modelItem => item.UsernameKh)</td>
+                <td>@Html.DisplayFor(modelItem => item.PassKh)</td>
+                <td>@Html.DisplayFor(modelItem => item.EmailKh)</td>
+                <td>
+                    <img src="~/Img/Customer/@item.AvatarKh" width="40" height="40" />
+                </td>
+
+                <td>
+                    <div>
+                        <div>
+                            <a class="btn btn-primary" style="float:left; margin-right:10px" href="@Url.Action("Sua2", "Admin", new { id = item.MaKh })">Sửa</a>
+                        </div>
+                        <div>
+                            <a class="btn btn-primary btn-thu2" style=" float:left" href="@Url.Action("Xoa2", "Admin", new { id = item.MaKh }) ">Xóa</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    }
+
+
+</table>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>

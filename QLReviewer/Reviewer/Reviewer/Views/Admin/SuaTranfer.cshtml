@@ -1,0 +1,57 @@
+﻿@model Reviewer.Models.Data.Pay
+@{
+    ViewData["Title"] = "Sửa Tranfer";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Sửa Yêu Cầu</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SuaTranfer">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div hidden="hidden" class="form-group">
+                <label asp-for="IdPay" class="control-label"></label>
+                <input asp-for="IdPay" class="form-control" />
+                <span asp-validation-for="IdPay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaReviewer" class="control-label">Mã Reviewer</label>
+                <input asp-for="MaReviewer" class="form-control" type="number" />
+                <span asp-validation-for="MaReviewer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailNl" class="control-label">Email:</label>
+                <input asp-for="EmailNl" class="form-control" type="email" />
+                <span asp-validation-for="EmailNl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoTien" class="control-label">Số tiền:</label>
+                <input asp-for="SoTien" class="form-control" type="number" />
+                <span asp-validation-for="SoTien" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TinhTrang" class="control-label">Tình Trạng</label>
+                <input asp-for="TinhTrang" class="form-control" />
+                <span asp-validation-for="TinhTrang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NgayGio" class="control-label">Ngày Giờ</label>
+                <input asp-for="NgayGio" class="form-control" type="datetime" />
+                <span asp-validation-for="NgayGio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="QLTranfer">Back to List</a>
+</div>
+
+
+
+
+

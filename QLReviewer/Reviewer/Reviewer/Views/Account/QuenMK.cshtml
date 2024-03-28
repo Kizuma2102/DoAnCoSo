@@ -1,0 +1,45 @@
+﻿@model Reviewer.Models.Data.Author
+@{
+    ViewData["Title"] = "Quên Mật Khẩu";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<style>
+    label.error {
+        color: red;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-heading" style="margin-top:30px;text-align:center">QUÊN MẬT KHẨU</div>
+    <div class="panel-body">
+        <form id="form1" class="form-horizontal" method="POST" enctype="multipart/form-data">
+            @using (Html.BeginForm("QuenMK", "Account", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.MaReviewer)
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="email">Email:</label>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control" id="email" name="Email">@ViewBag.ThongBaoLoi
+                        <p id="messageEmail"></p>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3"></label>
+                    <div class="col-sm-9">
+                        <button type="reset" class="btn btn-default">Xóa</button>
+                        <button type="submit" onclick="message1()" class="btn btn-primary">Gửi</button>
+                    </div>
+                </div>
+            }
+        </form>
+    </div>
+</div>
+<script>
+    function message1() {
+        alert("Mật khẩu mới đã được gửi qua mail đăng ký. Vui lòng kiểm tra mail và đăng nhập lại !");
+    }
+</script>

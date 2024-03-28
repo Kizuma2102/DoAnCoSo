@@ -1,0 +1,267 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Reviewer.Models.Data
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin Quản Lý Tin Tức</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="~/css/bootstrap.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link href="~/Admin/AdminLTE.min.css" rel="stylesheet" />
+    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+          page. However, you can choose any other skin. Make sure you
+          apply the skin class to the body tag so the changes take effect. -->
+    <link href="~/Admin/skin-blue.min.css" rel="stylesheet" />
+    <script src="~/Admin/jquery.min.js"></script>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        <!-- Main Header -->
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini">LBT</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>Admin</b></span>
+            </a>
+            <!-- Header Navbar -->
+            <nav class="navbar navbar-static-top" role="navigation">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- User Account Menu -->
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="dropdown user user-menu">
+                                <!-- Menu Toggle Button -->
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <!-- The user image in the navbar-->
+                                    <img src="~/Img/Admin/@User.Identity.Name" class="user-image" alt="User Image">
+                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                    <span class="hidden-xs">@Context.Session.GetString("Ad")</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <!-- The user image in the menu -->
+                                    <li class="user-header">
+                                        <img src="~/Img/Admin/@User.Identity.Name" class="img-circle" alt="User Image">
+                                        <p>
+                                            @Context.Session.GetString("Ad")
+
+                                        </p>
+                                    </li>
+                                    <!-- Menu Body -->
+                                    <!-- Menu Footer-->
+                                    <li class="user-footer">
+                                        <div class="pull-left">
+                                            <a href="#" class="btn btn-default btn-flat">Hồ sơ của tôi</a>
+                                        </div>
+                                        <div class="pull-right">
+                                            <a href="@Url.Action("Logout", "Admin")" class="btn btn-default btn-flat">Đăng Xuất</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        <!-- Control Sidebar Toggle Button -->
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="user-panel">
+                        <div class="pull-left image">
+                            <img src="~/Img/Admin/@User.Identity.Name" class="img-circle" alt="User Image">
+                        </div>
+                        <div class="pull-left info">
+                            <p>@Context.Session.GetString("Ad")</p>
+                            <!-- Status -->
+                            <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
+                        </div>
+                    </div>
+                }
+                <!-- search form (Optional) -->
+                <form action="#" method="get" class="sidebar-form">
+                    <div class="input-group">
+                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <span class="input-group-btn">
+                            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+                <!-- /.search form -->
+                <!-- Sidebar Menu -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">MỤC LỤC</li>
+                    <!-- Optionally, you can add icons to the links -->
+                    <li class="active"><a onclick="thongbao()" href="@Url.Action("Index")"><i class="fa fa-link"></i> <span>Trang Quản Lý User</span></a></li>
+                    <li><a href="@Url.Action("QLKhachHang")"><i class="fa fa-link"></i> <span>Quản Lý Độc Giả</span></a></li>
+                    <li><a href="@Url.Action("QLReviewer")"><i class="fa fa-link"></i> <span>Quản Lý Tác Giả</span></a></li>
+                    <li><a href="@Url.Action("QLTranfer")"><i class="fa fa-link"></i> <span>Quản Lý Yêu Cầu Rút Tiền</span></a></li>
+                    <li><a asp-controller="Admin" asp-action="QLPostBai"><i class="fa fa-link"></i> <span>Kiểm duyệt bài đăng</span></a></li>
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-link"></i> <span>Quản Lý Bài Viết</span><i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("QLBaiViet")">Bài Viết</a></li>
+                            <li><a href="@Url.Action("QLBaiVietHuyKichHoat")">Bài Viết đã hủy</a></li>
+                            <li><a href="@Url.Action("QLTag")">Tag</a></li>
+                            <li><a href="@Url.Action("QLLoaiSp")">Loại Sản Phẩm</a></li>
+                            <li><a href="@Url.Action("QLChuyenMuc")">Chuyên Mục</a></li>
+                        </ul>
+                    </li>
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-link"></i> <span>Thống Kê</span><i class="fa fa-angle-left pull-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("ThongKeTVTranfer")">Thống Kê TV Đã Chuyển Khoản</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="@Url.Action("Logout", "Admin")" class="label label-primary">Đăng Xuất</a></li>
+                </ul>
+                <!-- /.sidebar-menu -->
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <!-- Main content -->
+            <section class="content container-fluid">
+                <!--------------------------
+                | Your Page Content Here |
+                -------------------------->
+                @RenderBody()
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="pull-right hidden-xs">
+                20DTHB1_Đồ Án Cơ Sở
+            </div>
+            <!-- Default to the left -->
+            <strong>Bản quyền &copy; 2023 <a href="#">Nhóm LBT TEK</a>.</strong> Giữ toàn quyền.
+        </footer>
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Create the tabs -->
+            <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+                <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+                <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <!-- Home tab content -->
+                <div class="tab-pane active" id="control-sidebar-home-tab">
+                    <h3 class="control-sidebar-heading">Hoạt động gần đây</h3>
+                    <ul class="control-sidebar-menu">
+                        <li>
+                            <a href="javascript:;">
+                                <i class="menu-icon fa fa-check bg-green"></i>
+                                <div class="menu-info">
+                                    <h4 class="control-sidebar-subheading">Đang hoạt động</h4>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.control-sidebar-menu -->
+                    <h3 class="control-sidebar-heading">Tiến độ nhiệm vụ</h3>
+                    <ul class="control-sidebar-menu">
+                        <li>
+                            <a href="javascript:;">
+                                <h4 class="control-sidebar-subheading">
+                                    Duyệt các bài viết Review
+                                    <span class="pull-right-container">
+                                        <span class="label label-danger pull-right">70%</span>
+                                    </span>
+                                </h4>
+                                <div class="progress progress-xxs">
+                                    <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.control-sidebar-menu -->
+                </div>
+                <!-- /.tab-pane -->
+                <!-- Stats tab content -->
+                <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+                <!-- /.tab-pane -->
+                <!-- Settings tab content -->
+                <div class="tab-pane" id="control-sidebar-settings-tab">
+                    <form method="post">
+                        <h3 class="control-sidebar-heading">Cài đặt chung</h3>
+                        <div class="form-group">
+                            <label class="control-sidebar-subheading">
+                                Báo cáo trạng thái hoạt động
+                                <input type="checkbox" class="pull-right" checked>
+                            </label>
+                            <p>
+                                Một số thông tin cơ bản về tùy chọn cài đặt chung này
+                            </p>
+                        </div>
+                        <!-- /.form-group -->
+                    </form>
+                </div>
+                <!-- /.tab-pane -->
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Add the sidebar's background. This div must be placed
+        immediately after the control sidebar -->
+        <div class="control-sidebar-bg"></div>
+    </div>
+    <!-- ./wrapper -->
+    <!-- REQUIRED JS SCRIPTS -->
+    <!-- jQuery 3 -->
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/Admin/bootstrap.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Admin/adminlte.min.js"></script>
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+         Both of these plugins are recommended to enhance the
+         user experience. -->
+    <script src="~/dist/summernote.js"></script>
+    @if (Context.Session.Get("Admin") == null)
+    {
+        <script>
+            function thongbao() {
+                alert("bạn không được phép đăng nhập vào trang này");
+            }
+        </script>
+    }
+    @RenderSection("scripts", required: false)
+</body>
+</html>

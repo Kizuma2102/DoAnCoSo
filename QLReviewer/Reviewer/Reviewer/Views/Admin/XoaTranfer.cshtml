@@ -1,0 +1,56 @@
+﻿@model Reviewer.Models.Data.Pay
+@{
+    ViewData["Title"] = "XoaTranfer";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Xoá Rút Tiền</h2>
+<div>
+    <h3>Bạn có chắc chắn muốn xoá???</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdPay)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IdPay)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaReviewer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaReviewer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailNl)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EmailNl)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.SoTien)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.SoTien)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TinhTrang)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TinhTrang)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayGio)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NgayGio)
+        </dd>
+    </dl>
+
+    <form asp-action="XoaTranfer">
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="QLTranfer">Back to List</a>
+    </form>
+</div>
+
+

@@ -1,0 +1,71 @@
+﻿@model Reviewer.Models.Data.PostBv
+@{
+    ViewData["Title"] = "Xem bài đăng";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link href="~/dist/summernote.css" type="text/css" rel="stylesheet" />
+<h2>Xem Bài Đăng</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SuaPostBai" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div hidden="hidden" class="form-group">
+                <label asp-for="MaPost" class="control-label"></label>
+                <input asp-for="MaPost" class="form-control" />
+                <span asp-validation-for="MaPost" class="text-danger"></span>
+            </div>
+            <div hidden class="form-group">
+                <label asp-for="MaReviewer" class="control-label"></label>
+                <input asp-for="MaReviewer" class="form-control" type="number" />
+                <span asp-validation-for="MaReviewer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TenBai" class="control-label">Tên Bài</label>
+                <input asp-for="TenBai" class="form-control" type="text" />
+                <span asp-validation-for="TenBai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HinhAnhBv" class="control-label">Hình Ảnh</label>
+                <input asp-for="HinhAnhBv" class="hidden" />
+                <img src="~/Img/SmartPhone/@Model.HinhAnhBv" style="width:100px;height:100px" />
+            </div>
+            <div class="form-group">
+                <label asp-for="NoiDung" class="control-label">Nội Dung</label>
+                <textarea asp-for="NoiDung" class="form-control"></textarea>
+                <span asp-validation-for="NoiDung" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TinhTrang" class="control-label">Tình Trạng</label>
+                <input asp-for="TinhTrang" class="form-control" />
+                <span asp-validation-for="TinhTrang" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <a asp-action="QLPostBai" asp-controller="Admin"><input type="button" value="Quay về" class="btn btn-default" /></a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="QLPostBai">Back to List</a>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('#NoiDung').summernote({
+                placeholder: 'Description for product',
+                tabsize: 2,
+                height: 200
+            });
+        });
+    </script>
+}
+
+
+
+
+
+
+

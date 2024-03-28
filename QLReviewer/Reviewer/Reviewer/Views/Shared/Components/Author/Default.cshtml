@@ -1,0 +1,27 @@
+﻿@*
+For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<link rel="stylesheet" href="~/css/tacgia.css">
+
+@foreach (var item in Model)
+{
+    @* <li><a href="@Url.Action("BaiVietTheoTG","Home",new { id=item.MaReviewer})"><i class="fa
+fa-user"></i>@item.FullnameRe</a></li> *@
+    <li>
+        <div class="tacgia">
+            <div class="tacgia--ava">
+                <img src="~/Img/Reviewer/@item.AvatarRe" alt="">
+            </div>
+            <h4 class="tacgia--name">
+                <a href="@Url.Action("BaiVietTheoTG","Home", new { id=item.MaReviewer})">
+                    @item.FullnameRe
+                </a>
+            </h4>
+        </div>
+
+
+    </li>
+}

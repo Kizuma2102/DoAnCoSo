@@ -1,0 +1,74 @@
+﻿@model Reviewer.Models.Data.BaiViet
+
+@{
+    ViewData["Title"] = "Sua";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link href="~/dist/summernote.css" type="text/css" rel="stylesheet" />
+<h2>Sửa Bài Viết</h2>
+<hr />
+@using (Html.BeginForm("Sua", "Admin", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Sua">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div hidden="hidden" class="form-group">
+                    <label asp-for="MaBai" class="control-label"></label>
+                    <input asp-for="MaBai" class="form-control" />
+                    <span asp-validation-for="MaBai" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TenBai" class="control-label"></label>
+                    <input asp-for="TenBai" class="form-control" />
+                    <span asp-validation-for="TenBai" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="HinhAnhBv" class="control-label"></label>
+                    <input asp-for="HinhAnhBv" class="hidden" />
+                    <img src="~/Img/SmartPhone/@Model.HinhAnhBv" style="width:100px;height:100px" />
+                    <input name="fHinh" type="file" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label asp-for="NoiDung" class="control-label"></label>
+                    <textarea asp-for="NoiDung" class="form-control"></textarea>
+                    <span asp-validation-for="NoiDung" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MaLoai" class="control-label"></label>
+                    <select name="MaLoai" class="form-control" asp-items="ViewBag.MaLoai"></select>
+                    <span asp-validation-for="MaLoai" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MaReviewer" class="control-label"></label>
+                    <select name="MaReviewer" class="form-control" asp-items="ViewBag.MaReviewer"></select>
+                    <span asp-validation-for="MaReviewer" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="MaTag" class="control-label"></label>
+                    <select name="MaTag" class="form-control" asp-items="ViewBag.MaTag"></select>
+                    <span asp-validation-for="MaTag" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+}
+<div>
+    <a asp-action="QLBaiViet">Back to List</a>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(function () {
+            $('#NoiDung').summernote({
+                placeholder: 'Description for product',
+                tabsize: 2,
+                height: 200
+            });
+        });
+    </script>
+}

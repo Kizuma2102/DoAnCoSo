@@ -1,0 +1,90 @@
+﻿@model IEnumerable<Reviewer.Models.Data.BaiViet>
+@using X.PagedList;
+@using X.PagedList.Mvc.Common;
+@using X.PagedList.Mvc.Core;
+@{
+    ViewData["Title"] = "Tìm Kiếm";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<span style="padding-top:100px">
+    @ViewBag.ThongBao
+</span>
+<table id="table_id" class="display custom-table">
+    <thead>
+        <tr>
+            <th>Mã Bài</th>
+            <th>Tên Bài</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaBai</td>
+                <td><a href="@Url.Action("Details", "Home", new { id = item.MaBai })">@item.TenBai</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="pagination">
+    <a asp-action="Index">Back to Home</a>
+</div>
+
+<style>
+    .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .custom-table th,
+        .custom-table td {
+            padding: 10px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .custom-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .custom-table tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+    }
+
+        .pagination a {
+            color: #333;
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            margin: 0 5px;
+        }
+
+            .pagination a.active {
+                background-color: #4CAF50;
+                color: white;
+                border: 1px solid #4CAF50;
+            }
+
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+            }
+</style>
+
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>

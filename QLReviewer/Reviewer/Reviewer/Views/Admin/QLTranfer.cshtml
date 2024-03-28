@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Reviewer.Models.Data.Pay>
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "QL Tranfer";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center;color:black;">Quản Lý Yêu Cầu Rút Tiền</h2>
+@if (Context.Session.Get("Admin") != null)
+{
+    @await Html.PartialAsync("~/Views/Shared/Partials/ThemTranfer.cshtml")
+}
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Mã Reviewer</th>
+            <th>Email Ngân Lượng</th>
+            <th>Số Tiền Rút</th>
+            <th>Tình Trạng</th>
+            <th>Ngày Giờ Yêu Cầu</th>
+            <th>Ngày Giờ Hoàn Tất</th>
+            <th>Chức Năng</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.IdPay)</td>
+                <td>@Html.DisplayFor(modelItem => item.MaReviewer)</td>
+                <td>@Html.DisplayFor(modelItem => item.EmailNl)</td>
+                <td>@Html.DisplayFor(modelItem => item.SoTien)</td>
+                <td>
+                    @if (item.TinhTrang == false)
+                    {
+                        <p style="color:red"> Chờ Duyệt</p>
+                    }
+                    else
+                    {
+                        <p style="color:green">Hoàn Thành</p>
+                    }
+                </td>
+                <td>@Html.DisplayFor(modelItem => item.NgayGio)</td>
+                <td>@Html.DisplayFor(modelItem => item.NgayGioHoanTat)</td>
+
+                @if (Context.Session.Get("Admin") != null)
+                {
+
+                    <td>
+                        <div>
+                            <div>
+                                <a class="btn btn-primary" style="float:left; margin-right:10px" href="@Url.Action("SuaTranfer", "Admin", new { id = item.IdPay })">Sửa</a>
+                            </div>
+                            <div>
+                                <a class="btn btn-primary" style=" float:left" href="@Url.Action("XoaTranfer", "Admin", new { id = item.IdPay }) ">Xóa</a>
+                            </div>
+                            <div>
+                                <a class="btn btn-primary" style=" float:left" onclick="return confirm('Xác nhận duyệt bài ?');" href="@Url.Action("KichHoatTranfer", "Admin", new { id = item.IdPay }) ">Duyệt</a>
+                            </div>
+                        </div>
+                    </td>
+                }
+            </tr>
+        </tbody>
+    }
+
+</table>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>
+

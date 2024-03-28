@@ -1,0 +1,39 @@
+﻿@model Reviewer.Models.Data.LoaiSp
+
+@{
+    ViewData["Title"] = "SuaLoai";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Sửa Loại Sản Phẩm</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SuaLoai">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div hidden="hidden" class="form-group">
+                <label asp-for="MaLoai" class="control-label"></label>
+                <input asp-for="MaLoai" class="form-control" />
+                <span asp-validation-for="MaLoai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TenLoai" class="control-label">Tên Loại</label>
+                <input asp-for="TenLoai" class="form-control" />
+                <span asp-validation-for="TenLoai" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaMuc" class="control-label">Mã Mục</label>
+                <input asp-for="MaMuc" class="form-control" />
+                <span asp-validation-for="MaMuc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="QLLoaiSp">Back to List</a>
+</div>
+

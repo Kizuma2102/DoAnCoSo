@@ -1,0 +1,80 @@
+﻿@model Reviewer.Models.Data.Admin
+@{
+    ViewData["Title"] = "XoaAd";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h2> Xoá ADMIN</h2>
+<div>
+    <h3>Bạn có chắc chắn muốn xoá???</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UsernameAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UsernameAd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PasswordAd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FullnameAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullnameAd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailAd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailAd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AvatarAd)
+        </dt>
+
+        <img />
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsAdmin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsAdmin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Allowed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Allowed)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("XoaAd", "Admin", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
+
+
+
+

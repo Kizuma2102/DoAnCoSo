@@ -1,0 +1,19 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<div class="ftm_newsletter">
+    <h4>Tin tức</h4>
+    <p>Đăng ký để nhận tin mới nhất.</p>
+   
+        @using (Html.BeginForm("Subcribe", "Account", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            <input type="text" name="mail" placeholder="Nhập Email" />
+            <input type="submit" onclick="message()" class="fm_newsletter" />
+        }
+</div>
+<script>
+    function message() {
+        alert("Bạn đã đăng ký nhận bản tin thành công");
+    }
+</script>

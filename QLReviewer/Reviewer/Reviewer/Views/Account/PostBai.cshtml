@@ -1,0 +1,114 @@
+﻿@using Microsoft.AspNetCore.Http
+@using Reviewer.Models.Data
+@{
+    ViewData["Title"] = "PostBai";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<link href="~/dist/summernote.css" type="text/css" rel="stylesheet" />
+<style>
+    label.error {
+        color: red;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-heading" style="margin-top:30px;text-align:center">ĐĂNG BÀI</div>
+    <div class="panel-body">
+        @{
+            Author au = Context.Session.Get<Author>("AU");
+        }
+        <form id="form1" class="form-horizontal" asp-controller="Account" asp-action="PostBai" enctype="multipart/form-data">
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="username">Tiêu đề bài viết</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="user" name="TenBai">
+                    <p id="messageUser"></p>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="pass">Nội dung</label>
+                <div class="col-sm-9">
+                    <textarea type="text" name="NoiDung" class="form-control" id="NoiDung"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="dienthoai">Hình ảnh tiêu đề:</label>
+                <div class="col-sm-9">
+                    <input type="file" class="form-control" id="avatar" name="HinhAnhBV">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="dienthoai">Tag:</label>
+                <div class="col-sm-9">
+                    <select name="Tag" class="form-control" asp-items="ViewBag.MaTag"></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="dienthoai">Loại:</label>
+                <div class="col-sm-9">
+                    <select name="MaLoai" class="form-control" asp-items="ViewBag.MaLoai"></select>
+                </div>
+            </div>
+            <div hidden="hidden" class="form-group">
+                <label class="control-label col-sm-3" for="email">Mã Reviewer:</label>
+                <div class="col-sm-9">
+                    <input type="number" class="form-control" id="MaReviewer" name="MaReviewer" value="@au.MaReviewer">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="dienthoai">Mã Bảo Mật:</label>
+                <div class="col-sm-6">
+                    <img id="img-captcha" src="~/get-captcha-image" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3" for="dienthoai">Nhập mã Bảo Mật:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" placeholder="Captcha Code" name="CaptchaCode" maxlength="4" />@ViewData["LoiCaptcha"]
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-3"></label>
+                <div class="col-sm-9">
+                    <button type="reset" class="btn btn-default btnDelete">Xóa</button>
+                    <button type="submit" onclick="mess()" class="btn btn-primary btnRegister">Gửi bài</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts{
+    <script src="~/dist/summernote.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#NoiDung').summernote({
+                placeholder: 'Description for product',
+                tabsize: 2,
+                height: 200
+            });
+        });
+    </script>
+}
+<script>
+    $("#img-captcha").click(function () {
+        resetCaptchaImage();
+    });
+
+    function resetCaptchaImage() {
+        d = new Date();
+        $("#img-captcha").attr("src", "/get-captcha-image?" + d.getTime());
+    }
+</script>
+<script>
+    function mess() {
+        Swal.fire({
+            position: 'top-end',
+            type: 'success',
+            title: 'Bạn đã gửi bài thành công',
+            showConfirmButton: false,
+            timer: 1000
+        })
+    }
+</script>

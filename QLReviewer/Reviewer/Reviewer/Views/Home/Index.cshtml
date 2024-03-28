@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewData["Title"] = "Trang Review về sản phẩm";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+
+}
+
+<section class="hp_banner_area section_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="hp_banner_box">
+                    @await Component.InvokeAsync("News")
+                </div>
+        </div>
+        
+    </div>
+</section>
+<!-- ~~~=| Banner END |=~~~ -->
+<!-- ~~~=| Main Wrapper END |=~~~ -->
+<section class="main_news_wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-sm-9 col-xs-12">
+                <!-- ~~~=| SP area START |=~~~ -->
+                <div class="fashion_area">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            @await Component.InvokeAsync("IndexDanhMuc")
+                        </div>
+                        
+                    </div>
+                </div>
+                <!-- ~~~=| SP area END |=~~~ -->
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12">
+                <div class="home_sidebar">
+                    <div class="purchase_sidebar">
+                        <div class="purchase_sidebar_img">
+                            <img src="~/images/sidebar1.jpg" alt="" />
+                            <div class="purchase_overlay"></div>
+                            <div class="purchase_sidebar_text">
+                                <h2>LBT TEK</h2>
+                                <p>Cung cấp bài đánh giá sản phầm chất lượng tốt nhất</p>
+                                <div class="purchase_s"> <a href="">Xem</a> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="follow_us_side">
+                        <h2>Follow Us</h2>
+                        <div class="all_single_follow">
+                            <div class="single_follow_us">
+                                <a href="">
+                                    <i class="fa fa-facebook"></i><br>
+                                    9999<br>
+                                    Fans
+                                </a>
+                            </div>
+                            <div class="single_follow_us twit">
+                                <a href="">
+                                    <i class="fa fa-twitter"></i><br>
+                                    5697<br>
+                                    Fans
+                                </a>
+                            </div>
+                            <div class="single_follow_us goopl">
+                                <a href="">
+                                    <i class="fa fa-google-plus"></i><br>
+                                    8386<br>
+                                    Fans
+                                </a>
+                            </div>
+                            <div class="single_follow_us last_one">
+                                <a href="">
+                                    <i class="fa fa-dribbble"></i><br>
+                                    5638<br>
+                                    Fans
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @await Component.InvokeAsync("XemNhieu")
+                    @await Component.InvokeAsync("Image")
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

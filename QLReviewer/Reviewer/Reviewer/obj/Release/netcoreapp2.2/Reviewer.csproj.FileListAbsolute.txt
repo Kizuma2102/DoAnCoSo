@@ -1,0 +1,6 @@
+C:\Users\TTMT Hutech\Desktop\Đồ án ASP CORE(bản chính thức)\QLReviewer\Reviewer\Reviewer\obj\Release\netcoreapp2.2\Reviewer.csprojAssemblyReference.cache
+C:\Users\TTMT Hutech\Desktop\Đồ án ASP CORE(bản chính thức)\QLReviewer\Reviewer\Reviewer\obj\Release\netcoreapp2.2\Reviewer.csproj.CoreCompileInputs.cache
+C:\Users\TTMT Hutech\Desktop\Đồ án ASP CORE(bản chính thức)\QLReviewer\Reviewer\Reviewer\obj\Release\netcoreapp2.2\Reviewer.RazorAssemblyInfo.cache
+C:\Users\TTMT Hutech\Desktop\Đồ án ASP CORE(bản chính thức)\QLReviewer\Reviewer\Reviewer\obj\Release\netcoreapp2.2\Reviewer.RazorAssemblyInfo.cs
+C:\Users\TTMT Hutech\Desktop\Đồ án ASP CORE(bản chính thức)\QLReviewer\Reviewer\Reviewer\obj\Release\netcoreapp2.2\Reviewer.AssemblyInfoInputs.cache
+C:\Users\TTMT Hutech\Desktop\Đồ án ASP CORE(bản chính thức)\QLReviewer\Reviewer\Reviewer\obj\Release\netcoreapp2.2\Reviewer.AssemblyInfo.cs

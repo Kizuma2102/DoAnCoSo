@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@foreach (var item in Model)
+{
+<div class="header_fasion">
+    <div class="left_fashion main_nav_box">
+        <ul>
+            <li class="@item.HinhChuyenMuc"><a href="">@item.TenMuc</a></li>
+        </ul>
+    </div>
+    <div class="fasion_right">
+        <ul>
+            <li><a href="">Mới nhất</a></li>
+            <li><a href="">Cũ</a></li>
+            <li><a href="">Tất cả</a></li>
+            <li class="last_item"><a href="">...</a></li>
+        </ul>
+    </div>
+    </div>
+    <div class="gadgets_area_box">
+        <div class="row">
+            @await Component.InvokeAsync("BaiVietIndex", item.MaMuc)
+        </div>
+    </div>
+}

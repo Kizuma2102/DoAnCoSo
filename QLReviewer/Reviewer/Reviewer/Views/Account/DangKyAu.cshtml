@@ -1,0 +1,135 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Đăng Ký Reviewer";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<script src="https://code.jquery.com/jquery.min.js"></script>
+<style>
+    label.error {
+        color: red;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-heading" style="margin-top:30px;text-align:center">ĐĂNG KÝ REVIEWER</div>
+    <div class="panel-body">
+
+        <form id="form1" class="form-horizontal" method="POST" enctype="multipart/form-data">
+            @using (Html.BeginForm("DangKyAu", "Account", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(false)
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="username">Tên đăng nhập:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="user" onblur="CheckUser()" name="TenDN" required placeholder="Tên đăng nhập">@ViewData["LoiUserRe"]
+                        <p onkeyup="ClearMessageUser()"></p>
+                        <p id="messageUser"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="pass">Mật khẩu:</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" id="pass" name="Matkhau" required placeholder="Mật khẩu">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="repass">Nhập lại Mật khẩu:</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" id="repass" name="Nhaplai" required placeholder="Mật khẩu">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="hoten">Họ tên:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="hoten" name="hotenkh" required placeholder="Họ tên">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="diachi">Địa chỉ:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="diachi" name="Diachi" placeholder="Địa chỉ nhà">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="email">Email:</label>
+                    <div class="col-sm-9">
+                        <input type="email" class="form-control" id="email" onblur="CheckEmail()" name="email" required placeholder="Địa chỉ mail">@ViewData["LoiEmailRe"]
+                        <p onkeyup="ClearMessageEmail()"></p>
+                        <p id="messageEmail"></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="dienthoai">Avatar:</label>
+                    <div class="col-sm-9">
+                        <input type="file" class="form-control" id="avatar" name="AvatarRe">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="dienthoai">Mã Bảo Mật:</label>
+                    <div class="col-sm-6">
+                        <img id="img-captcha" src="~/get-captcha-image" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="dienthoai">Nhập mã Bảo Mật:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" placeholder="Captcha Code" name="CaptchaCode" maxlength="4" />@ViewData["LoiCaptcha"]
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3"></label>
+                    <div class="col-sm-9">
+                        <button type="reset" class="btn btn-default btnDelete">Xóa</button>
+                        <button type="submit" class="btn btn-primary btnRegister">Đăng ký</button>
+                    </div>
+                </div>
+            }
+        </form>
+    </div>
+    <div class="panel-footer">Vui lòng nhập đầy đủ thông tin</div>
+</div>
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
+
+    <script>
+        function checkName(value, element) {
+            var pattern = /^([a-z0-9])*$/;
+            return pattern.test(value) || this.optional(element);
+        }
+        $.validator.addMethod("valid_name", checkName, "Tên đăng nhập không có dấu Tiếng Việt")
+        $(function () {
+            $("#form1").validate({
+                rules: {
+                    hotenkh: { required: true, minlength: 4 },
+                    email: { email: true, required: true },
+                    Matkhau: { required: true },
+                    Nhaplai: { equalTo: "input[name='Matkhau']" },
+                    Avatar: { extension: "png|gif|jpg" },
+                    TenDN: { valid_name: true}
+                },
+                messages: {
+                    hotenkh: { required: "*", minlength: "Tối thiểu 4 ký tự" },
+                    email: { require: "Email không được bỏ trống !" },
+                    Nhaplai: { equalTo: "Không khớp" },
+                    Avatar: { extension: "Chỉ chấp nhận file hình ảnh png|gif|jpg" },
+                }
+            });
+        });
+    </script>
+}
+<script>
+    $("#img-captcha").click(function () {
+        resetCaptchaImage();
+    });
+
+    function resetCaptchaImage() {
+        d = new Date();
+        $("#img-captcha").attr("src", "/get-captcha-image?" + d.getTime());
+    }
+</script>
+
+
+

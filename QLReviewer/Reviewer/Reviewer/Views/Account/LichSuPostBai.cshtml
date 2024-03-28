@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Http
+@using X.PagedList;
+@using X.PagedList.Mvc.Common;
+@using X.PagedList.Mvc.Core;
+@model IEnumerable<Reviewer.Models.Data.PostBv>
+@{
+    ViewData["Title"] = "Lịch sử đăng bài";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<div class="container">
+    <h2>Lịch Sử Đăng Bài</h2>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Thời gian</th>
+                <th>Tiêu đề bài viết</th>
+                <th>Hình ảnh tiêu đề</th>
+                <th>Trạng Thái</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tbody>
+                <tr>
+                    <td>@String.Format("{0:d/M/yyyy HH:mm:ss}", item.NgayViet)</td>
+                    <td>@item.TenBai</td>
+                    <td><img src="~/Img/SmartPhone/@item.HinhAnhBv" style="height:80px;width:100px"/></td>
+                    <td>
+                        @if (item.TinhTrang == false)
+                        {
+                            <p style="color:red"> Chưa Duyệt</p>
+                        }
+                        else
+                        {
+                            <p style="color:green">Đã Duyệt</p>
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        }
+    </table>
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("LichSuPostBai", new { page = page }))
+</div>
+

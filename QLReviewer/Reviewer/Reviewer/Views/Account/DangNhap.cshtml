@@ -1,0 +1,37 @@
+﻿@model Reviewer.ViewModel.LoginViewModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Đăng Nhập</title>
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/login.css" rel="stylesheet" />
+    <link rel="shortcut icon" type="images/ico" href="~/images/favicon1.ico" />
+</head>
+<body>
+    <div class="body">
+        <img src="https://static.vecteezy.com/system/resources/previews/010/405/790/original/minimalist-and-modern-future-hexagon-abstract-geometric-white-and-gray-color-polygon-background-design-illustration-vector.jpg" alt="Login Image" />
+    </div>
+    <div class="loginBox">
+        <img src="~/images/logo.png" class="user" />
+        <div class="text-danger">@ViewBag.ThongBaoLoi</div>
+        <h1> Ðăng Nhập</h1>
+        <form asp-action="DangNhap" method="post" asp-route-ReturnUrl="@ViewBag.ReturnUrl">
+            <p>Ðăng Nhập</p>
+            <input asp-for="UserName" class="form-control" placeholder="Tên đăng nhập" />
+            <span asp-validation-for="UserName" class="text-danger"></span>
+
+            <p>Mật Khẩu</p>
+            <input asp-for="Password" class="form-control" placeholder="Mật khẩu" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+
+            <input type="submit" name="" value="Ðăng nhập">
+            <p class="login__signup">Bạn chua có tài khoản? &nbsp;<a href="@Url.Action("DangKy","Account")">Ðăng ký</a></p>
+            <p class="login__signup"><a href="@Url.Action("QuenMK", "Account")">Quên mật khẩu</a></p>
+        </form>
+    </div>
+</body>
+</html>

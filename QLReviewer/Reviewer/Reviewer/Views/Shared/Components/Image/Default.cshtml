@@ -1,0 +1,41 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{ int i = 0;}
+<div class="follow_us_side">
+    <h2>Trưng bày sản phẩm nổi bật</h2>
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            @foreach (var item in Model)
+            {
+                if (i > Model.Count / 2)
+                {
+                    <div class="item active">
+                        <div class="br_single_news">
+                            <a href="/Home/@item.TenBvFriendly"><img alt="" src="~/Img/SmartPhone/@item.HinhAnhBv"></a>
+                            <div class="br_cam"> <a class="fa fa-camera" href=""></a> </div>
+                        </div>
+                    </div>
+                }
+                if (i <= Model.Count / 2)
+                {
+                    <div class="item">
+                        <div class="br_single_news">
+                            <a href="/Home/@item.TenBvFriendly"><img alt="" src="~/Img/SmartPhone/@item.HinhAnhBv"></a>
+                            <div class="br_cam"> <a class="fa fa-camera" href=""></a> </div>
+                        </div>
+                    </div>
+                }
+                i++;
+            }
+        </div>
+    </div>
+</div>

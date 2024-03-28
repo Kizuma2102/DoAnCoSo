@@ -1,0 +1,7 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@foreach (var item2 in Model)
+{
+    <li><a href="@Url.Action("BaiVietTheoLoai","Home",new { id=item2.MaLoai})"><span>@item2.TenLoai</span></a></li>
+}

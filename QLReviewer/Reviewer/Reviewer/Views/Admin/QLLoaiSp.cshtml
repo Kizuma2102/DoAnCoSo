@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Reviewer.Models.Data.LoaiSp>
+@{
+    ViewData["Title"] = "QLLoaiSp";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 style="text-align:center;color:black;">Quản Lý Loại</h2>
+@await Html.PartialAsync("~/Views/Shared/Partials/ThemLoai.cshtml")
+<table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Mã Loại</th>
+            <th>Tên Loại</th>
+            <th>Mã Mục</th>
+            <th>Chức Năng</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.MaLoai)</td>
+                <td>@Html.DisplayFor(modelItem => item.TenLoai)</td>
+                <td>@Html.DisplayFor(modelItem => item.MaMuc)</td>
+
+                <td>
+                    <div>
+                        <div>
+                            <a class="btn btn-primary" style="float:left; margin-right:10px" href="@Url.Action("SuaLoai", "Admin", new { id = item.MaLoai })">Sửa</a>
+                        </div>
+                        <div>
+                            <a class="btn btn-primary" style=" float:left" href="@Url.Action("XoaLoai", "Admin", new { id = item.MaLoai }) ">Xóa</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    }
+
+
+</table>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#table_id').DataTable();
+    });
+</script>
+
+
